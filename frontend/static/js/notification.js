@@ -545,11 +545,15 @@ function testService() {
 
 	const faulty_inputs =
 		[...NotiEls.add_service_window.querySelectorAll('input:not([data-regex=""])[data-regex]')]
-			.filter(el => !new RegExp
-				(
-					el.dataset.regex.split(',').slice(0, el.dataset.regex.split(',').length-1).join(','),
-					el.dataset.regex.split(',')[el.dataset.regex.split(',').length-1]
-				).test(el.value)
+			.filter(el =>
+				!(
+					(!el.required && el.value === '')
+					||
+					new RegExp(
+						el.dataset.regex.split(',').slice(0, el.dataset.regex.split(',').length-1).join(','),
+						el.dataset.regex.split(',')[el.dataset.regex.split(',').length-1]
+					).test(el.value)
+				)
 			);
 	if (faulty_inputs.length > 0) {
 		faulty_inputs.forEach(el => el.classList.add('error-input'));
