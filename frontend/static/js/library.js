@@ -35,17 +35,6 @@ function getSorting(type, key=false) {
 		return getLocalStorage(sorting_key)[sorting_key];
 };
 
-function getWeekDays(locale) {
-	const baseDate = new Date(Date.UTC(2017, 0, 2)); // just a Monday
-	const weekDays = [];
-	for (i = 0; i < 7; i++)
-	{
-		weekDays.push(baseDate.toLocaleDateString(locale, { weekday: 'short' }));
-		baseDate.setDate(baseDate.getDate() + 1);
-	}
-	return weekDays;
-};
-
 function getActiveTab() {
 	for (let t of Object.values(Types)) {
 		if (getComputedStyle(t).display === 'flex')
@@ -159,7 +148,7 @@ function evaluateSizing() {
 Object.values(Types).forEach(t => fillLibrary(t));
 setInterval(() => fillLibrary(Types.reminder), 60000);
 
-const week_days = getWeekDays(getLocalStorage('locale')['locale']);
+const week_days = ["Mo", "Tu", "We", "Thu", "Fr", "Sa", "Su"];
 
 NavButtons.home.onclick = e => showWindow("home");
 NavButtons.notification_services.onclick = e => showWindow("notification");
