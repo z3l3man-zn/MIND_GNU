@@ -10,6 +10,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 8081
 
 CMD [ "python3", "/app/MIND.py" ]
