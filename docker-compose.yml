@@ -6,7 +6,7 @@ services:
         volumes:
             - "mind-db:/app/db"
         environment:
-            - TZ=America/Bogota
+            - TZ=Europe/Amsterdam
         ports:
             - 8081:8081
 
